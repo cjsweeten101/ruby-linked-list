@@ -15,7 +15,7 @@ class LinkedList
     else
       last_node = tail
       last_node.next_node = Node.new
-      last_node.value = value
+      last_node.next_node.value = value
     end
   end
 
@@ -33,7 +33,8 @@ class LinkedList
   end
 
   def size
-    result = 0
+    result = 1
+    current_node = @head
     until current_node.next_node.nil?
       result += 1
       current_node = current_node.next_node
@@ -44,7 +45,29 @@ class LinkedList
   def at(index)
     i = 0
     current_node = @head
-    current_node = current_node.next_node until i == index || current_node.next_node.nil?
+    until i == index
+      i += 1
+      current_node = current_node.next_node
+    end
+    current_node
+  end
+
+  def pop
+    current_node = @head
+    previous_node = current_node
+    until current_node.next_node.nil?
+      previous_node = current_node
+      current_node = current_node.next_node
+    end
+    previous_node.next_node = nil
     current_node
   end
 end
+
+test = LinkedList.new
+test.append(1)
+test.append(2)
+test.append(3)
+p test.size
+p test.pop
+p test.size
