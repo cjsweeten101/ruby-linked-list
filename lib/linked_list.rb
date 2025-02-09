@@ -83,9 +83,22 @@ class LinkedList
       current_node = current_node.next_node
     end
   end
+
+  def to_s
+    result = ''
+
+    current_node = @head
+    until current_node.nil?
+      result += "( #{current_node.value} ) -> "
+      current_node = current_node.next_node
+    end
+    "#{result} nil"
+  end
 end
 
 test = LinkedList.new
 test.append('l')
 test.append('k')
 test.append('c')
+
+p test.to_s
