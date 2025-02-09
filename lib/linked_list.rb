@@ -88,6 +88,20 @@ class LinkedList
     new_node
   end
 
+  def remove_at(index)
+    previous_node = nil
+    deleted_node = nil
+    each_with_index do |node, i|
+      if i == index - 1
+        previous_node = node
+      elsif i == index
+        previous_node.next_node = node.next_node
+        deleted_node = node
+      end
+    end
+    deleted_node
+  end
+
   def each_with_index
     i = 0
     each do |node|
