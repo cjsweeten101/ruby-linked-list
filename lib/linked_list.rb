@@ -20,9 +20,9 @@ class LinkedList
   end
 
   def tail
-    current_node = @head
-    current_node = current_node.next_node until current_node.next_node.nil?
-    current_node
+    result = nil
+    each { |n| result = n if n.next_node.nil? }
+    result
   end
 
   def prepend(value)
@@ -33,72 +33,65 @@ class LinkedList
   end
 
   def size
-    result = 1
-    current_node = @head
-    until current_node.next_node.nil?
-      result += 1
-      current_node = current_node.next_node
-    end
+    result = 0
+
+    each { result += 1 }
     result
   end
 
   def at(index)
     i = 0
-    current_node = @head
-    until i == index
+    each do |node|
+      return node if i == index
+
       i += 1
-      current_node = current_node.next_node
     end
-    current_node
   end
 
   def pop
-    current_node = @head
-    previous_node = current_node
-    until current_node.next_node.nil?
-      previous_node = current_node
-      current_node = current_node.next_node
+    last_node = tail
+    each do |node|
+      node.next_node = nil if node.next_node == last_node
     end
-    previous_node.next_node = nil
-    current_node
+    last_node
   end
 
   def contains?(value)
-    current_node = @head
-    until current_node.nil?
-      return true if current_node.value == value
-
-      current_node = current_node.next_node
+    result = false
+    each do |node|
+      result = true if node.value == value
     end
-    false
+    result
   end
 
   def find(value)
-    current_node = @head
-    i = 1
-    until current_node.nil?
-      return i if current_node.value == value
-
-      i += 1
-      current_node = current_node.next_node
-    end
+    each { |n| return n if n.value == value }
   end
 
   def to_s
     result = ''
 
+    each { |n| result += "( #{n.value} ) -> " }
+    "#{result}nil"
+  end
+
+  def each
     current_node = @head
     until current_node.nil?
-      result += "( #{current_node.value} ) -> "
+      yield(current_node)
+
       current_node = current_node.next_node
     end
-    "#{result} nil"
   end
 end
 
-test = LinkedList.new
-test.append('l')
-test.append('k')
-test.append('c')
+list = LinkedList.new
 
-p test.to_s
+list.append('dog')
+list.append('cat')
+list.append('parrot')
+list.append('hamster')
+list.append('snake')
+list.append('turtle')
+
+puts list
