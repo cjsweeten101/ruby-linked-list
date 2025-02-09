@@ -12,12 +12,10 @@ class LinkedList
     if @head.nil?
       @head = Node.new
       @head.value = value
-      p @head.value
     else
       last_node = traverse_to_end
       last_node.next_node = Node.new
       last_node.value = value
-      p last_node.value
     end
   end
 
