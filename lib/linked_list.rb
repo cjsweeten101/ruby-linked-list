@@ -13,13 +13,13 @@ class LinkedList
       @head = Node.new
       @head.value = value
     else
-      last_node = traverse_to_end
+      last_node = tail
       last_node.next_node = Node.new
       last_node.value = value
     end
   end
 
-  def traverse_to_end
+  def tail
     current_node = @head
     current_node.next_node = current_node until current_node.next_node.nil?
     current_node
