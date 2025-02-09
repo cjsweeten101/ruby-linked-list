@@ -40,12 +40,7 @@ class LinkedList
   end
 
   def at(index)
-    i = 0
-    each do |node|
-      return node if i == index
-
-      i += 1
-    end
+    each_with_index { |n, i| return n if i == index }
   end
 
   def pop
