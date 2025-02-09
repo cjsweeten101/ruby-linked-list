@@ -75,6 +75,27 @@ class LinkedList
     "#{result}nil"
   end
 
+  def insert_at(value, index)
+    new_node = nil
+    each_with_index do |node, i|
+      next unless i == index - 1
+
+      new_node = Node.new
+      new_node.value = value
+      new_node.next_node = node.next_node
+      node.next_node = new_node
+    end
+    new_node
+  end
+
+  def each_with_index
+    i = 0
+    each do |node|
+      yield(node, i)
+      i += 1
+    end
+  end
+
   def each
     current_node = @head
     until current_node.nil?
