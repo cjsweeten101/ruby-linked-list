@@ -72,13 +72,20 @@ class LinkedList
     end
     false
   end
+
+  def find(value)
+    current_node = @head
+    i = 1
+    until current_node.nil?
+      return i if current_node.value == value
+
+      i += 1
+      current_node = current_node.next_node
+    end
+  end
 end
 
 test = LinkedList.new
-test.append(1)
-test.append(2)
-test.append(3)
-
-p test.contains?(3)
-
-p test.tail
+test.append('l')
+test.append('k')
+test.append('c')
