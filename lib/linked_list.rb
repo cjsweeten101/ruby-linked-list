@@ -62,12 +62,23 @@ class LinkedList
     previous_node.next_node = nil
     current_node
   end
+
+  def contains?(value)
+    current_node = @head
+    until current_node.nil?
+      return true if current_node.value == value
+
+      current_node = current_node.next_node
+    end
+    false
+  end
 end
 
 test = LinkedList.new
 test.append(1)
 test.append(2)
 test.append(3)
-p test.size
-p test.pop
-p test.size
+
+p test.contains?(3)
+
+p test.tail
