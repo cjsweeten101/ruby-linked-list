@@ -24,4 +24,11 @@ class LinkedList
     current_node.next_node = current_node until current_node.next_node.nil?
     current_node
   end
+
+  def prepend(value)
+    previous_head = @head
+    @head = Node.new
+    @head.value = value
+    @head.next_node = previous_head
+  end
 end
