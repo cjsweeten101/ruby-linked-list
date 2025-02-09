@@ -21,7 +21,7 @@ class LinkedList
 
   def tail
     current_node = @head
-    current_node.next_node = current_node until current_node.next_node.nil?
+    current_node = current_node.next_node until current_node.next_node.nil?
     current_node
   end
 
@@ -34,7 +34,17 @@ class LinkedList
 
   def size
     result = 0
-    result += 1 until current_node.next_node.nil?
+    until current_node.next_node.nil?
+      result += 1
+      current_node = current_node.next_node
+    end
     result
   end
+
+  def at(index)
+    i = 0
+    current_node = @head
+    current_node.next_node = current_node until i == index || current_node.next_node.nil?
+  end
+  current_node
 end
