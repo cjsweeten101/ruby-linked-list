@@ -44,7 +44,7 @@ class LinkedList
   def at(index)
     i = 0
     current_node = @head
-    current_node.next_node = current_node until i == index || current_node.next_node.nil?
+    current_node = current_node.next_node until i == index || current_node.next_node.nil?
+    current_node
   end
-  current_node
 end
